@@ -3,6 +3,7 @@
     <gmap-map ref="mainmap"
       :center="position"
       :zoom="zoom"
+      :options="options"
       map-type-id="terrain"
       style="width: 100%; height: 500px"
     >
@@ -20,6 +21,14 @@ export default {
       zoom: 15,
       radius: 500,
       type: ['restaurant'],
+      options: {
+        zoomControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        rotateControl: false,
+        fullscreenControl: false,
+      }
     }
   },
   computed: {
