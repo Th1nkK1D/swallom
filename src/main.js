@@ -2,14 +2,20 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Vuetify from 'vuetify'
+
 import App from './App'
 import router from './router'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
 
-//Init Vuex store
-Vue.use(Vuex)
+import('../node_modules/vuetify/dist/vuetify.min.css')
 
+
+Vue.use(Vuex)
+Vue.use(Vuetify)
+
+//Init Vuex store
 const store = new Vuex.Store({
   state: {
     resultList: []

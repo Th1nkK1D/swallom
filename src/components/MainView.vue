@@ -10,7 +10,7 @@
       <gmap-marker :position="position" icon="/static/img/streetview-icon.png"></gmap-marker>
       <gmap-circle :center="position" :radius="radius" options:="circleOptions"></gmap-circle>
     </gmap-map>
-    <button type="button" name="button" @click="random">random</button>
+    <v-btn round primary dark @click="random">Random</v-btn>
   </div>
 </template>
 
