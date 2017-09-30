@@ -5,7 +5,8 @@
       :zoom="zoom"
       map-type-id="terrain"
       style="width: 100%; height: 300px"
-    ></gmap-map>
+    >
+    <gmap-marker :position="position"></gmap-marker></gmap-map>
   </div>
 </template>
 
