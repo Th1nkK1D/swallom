@@ -15,6 +15,7 @@ export default new Router({
     {
       path: '/result/:lat/:lng/:zoom/:radius/:type',
       name: 'RandomView',
+      //props: true,
       component: RandomView
     }
   ]

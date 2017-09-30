@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <gmap-map ref="mainmap"
+    <gmap-map ref="resultmap"
       :center="position"
       :zoom="zoom"
       map-type-id="terrain"
@@ -8,63 +8,64 @@
     >
     <!-- <gmap-marker :position="position"></gmap-marker>-->
     </gmap-map>
-    <button type="button" name="button" @click="random">RANDOM</button>
     <div v-if="resultList.length > 0">
       {{resultList[randi].name}}
     </div>
+    <button @click="random">test</button>
   </div>
 </template>
 
 <script>
 export default {
+  //props: ['lat','lng','zoom','radius','type'],
   data: function() {
     return {
       position: {lat: 0.0, lng: 0.0},
       zoom: 15,
-      resultList: [],
+      //resultList: [],
       randi: 0,
     }
   },
   mounted: function() {
-    var vm = this;
+    //Init data
+    console.log(this.$route.params);
 
-    // Get device location
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        vm.position = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-      }, function() {
-        console.log("Location Error")
-      });
-    } else {
-      console.log("Browser doesn't support Geolocation");
+    this.position = {lat: Number(this.$route.params.lat), lng: Number(this.$route.params.lng)};
+    this.zoom = Number(this.$route.params.zoom);
+
+    var request = {
+      location: this.position,
+      radius: Number(this.$route.params),
+      type: this.$route.params.type.split(",")
+    };
+
+    //Init place service
+    // console.log(this.$refs.resultmap);
+    // console.log(this.$refs.resultmap.$mapObject);
+    // let service = new google.maps.places.PlacesService(this.$refs.resultmap.$mapObject);
+    //
+    // var vm = this;
+    //
+    // //Get place list
+    // service.nearbySearch(request, function(results, status) {
+    //   if (status == google.maps.places.PlacesServiceStatus.OK) {
+    //     console.log(results);
+    //     vm.resultList = results;
+    //     vm.randi = Math.floor(Math.random() * results.length);
+    //     console.log(vm.resultList[vm.randi])
+    //   }
+    // });
+  },
+  watch: {
+    $refs['resultmap']['$mapObject']: function (val) {
+      console.log('watch')
+      console.log(val);
     }
   },
   methods: {
     random: function() {
-      console.log('rand')
-      var vm = this;
-
-      var request = {
-        location: this.position,
-        radius: '500',
-        type: ['restaurant']
-      };
-
-      //Init place service
-      let service = new google.maps.places.PlacesService(this.$refs.mainmap.$mapObject);
-
-      //Get place list
-      service.nearbySearch(request, function(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-          console.log(results);
-          vm.resultList = results;
-          vm.randi = Math.floor(Math.random() * results.length);
-          console.log(vm.resultList[vm.randi])
-        }
-      });
+      console.log(this.$refs.resultmap);
+      console.log(this.$refs.resultmap.$mapObject);
     }
   }
 }
