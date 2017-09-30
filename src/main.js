@@ -1,10 +1,25 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
+
+//Init Vuex store
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+  state: {
+    resultList: 'test'
+  },
+  mutations: {
+    updateResult (state,val) {
+      state.resultList = val;
+    }
+  }
+})
 
 // Init google map
 Vue.use(VueGoogleMaps, {
@@ -24,8 +39,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
-  components: { App }
+  components: { App },
 })
-
-var resultList = [];

@@ -22,7 +22,6 @@ export default {
     return {
       position: {lat: 0.0, lng: 0.0},
       zoom: 15,
-      resultList: resultList,
       randi: 0,
     }
   },

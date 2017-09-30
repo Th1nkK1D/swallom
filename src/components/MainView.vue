@@ -8,6 +8,7 @@
     >
     <gmap-marker :position="position"></gmap-marker></gmap-map>
     <button type="button" name="button" @click="random">random</button>
+    {{ resultList }}
   </div>
 </template>
 
@@ -19,7 +20,11 @@ export default {
       zoom: 15,
       radius: 500,
       type: ['restaurant'],
-      resultList: resultList
+    }
+  },
+  computed: {
+    resultList: function() {
+      return this.$store.state.resultList;
     }
   },
   mounted: function() {
@@ -60,6 +65,8 @@ export default {
           vm.resultList = results;
           vm.randi = Math.floor(Math.random() * results.length);
           console.log(vm.resultList[vm.randi])
+
+          vm.$store.commit('updateResult','success');
         }
       });
     }
