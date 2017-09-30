@@ -3,7 +3,7 @@
     <gmap-map ref="resultmap"
       :center="resultList[randi].geometry.location"
       :zoom="zoom"
-      :options="options"
+      :options="mapOptions"
       map-type-id="terrain"
       style="width: 100%; height: 200px"
     >
@@ -26,10 +26,10 @@ export default {
       position: {lat: 0.0, lng: 0.0},
       zoom: 15,
       randi: 0,
-      options: {
-        zoomControl: false,
+      mapOptions: {
+        zoomControl: true,
         mapTypeControl: false,
-        scaleControl: false,
+        scaleControl: true,
         streetViewControl: false,
         rotateControl: false,
         fullscreenControl: false,

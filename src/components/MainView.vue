@@ -3,11 +3,12 @@
     <gmap-map ref="mainmap"
       :center="position"
       :zoom="zoom"
-      :options="options"
+      :options="mapOptions"
       map-type-id="terrain"
       style="width: 100%; height: 500px"
     >
       <gmap-marker :position="position" icon="/static/img/streetview-icon.png"></gmap-marker>
+      <gmap-circle :center="position" :radius="radius" options:="circleOptions"></gmap-circle>
     </gmap-map>
     <button type="button" name="button" @click="random">random</button>
   </div>
@@ -19,16 +20,23 @@ export default {
     return {
       position: {lat: 0.0, lng: 0.0},
       zoom: 15,
-      radius: 500,
+      radius: 800,
       type: ['restaurant'],
-      options: {
-        zoomControl: false,
+      mapOptions: {
+        zoomControl: true,
         mapTypeControl: false,
-        scaleControl: false,
+        scaleControl: true,
         streetViewControl: false,
         rotateControl: false,
         fullscreenControl: false,
-      }
+      },
+      cicleOptions: {
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.6,
+        strokeWeight: 1,
+        fillColor: '#FF0000',
+        fillOpacity: 0.2,
+      },
     }
   },
   computed: {
