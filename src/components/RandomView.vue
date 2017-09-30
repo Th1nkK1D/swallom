@@ -8,9 +8,9 @@
     >
     <!-- <gmap-marker :position="position"></gmap-marker>-->
     </gmap-map>
-    <div v-if="resultList.length > 0">
+    <!-- <div v-if="resultList.length > 0">
       {{resultList[randi].name}}
-    </div>
+    </div> -->
     <button @click="random">test</button>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
     return {
       position: {lat: 0.0, lng: 0.0},
       zoom: 15,
-      //resultList: [],
+      resultList: resultList,
       randi: 0,
     }
   },
@@ -55,12 +55,6 @@ export default {
     //     console.log(vm.resultList[vm.randi])
     //   }
     // });
-  },
-  watch: {
-    $refs['resultmap']['$mapObject']: function (val) {
-      console.log('watch')
-      console.log(val);
-    }
   },
   methods: {
     random: function() {
