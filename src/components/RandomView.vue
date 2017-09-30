@@ -4,9 +4,10 @@
       :center="position"
       :zoom="zoom"
       map-type-id="terrain"
-      style="width: 100%; height: 300px"
+      style="width: 100%; height: 200px"
     >
-    <gmap-marker :position="position"></gmap-marker></gmap-map>
+    <!-- <gmap-marker :position="position"></gmap-marker>-->
+    </gmap-map>
     <button type="button" name="button" @click="random">RANDOM</button>
     <div v-if="resultList.length > 0">
       {{resultList[randi].name}}
