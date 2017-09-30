@@ -8,7 +8,6 @@
     >
     <gmap-marker :position="position"></gmap-marker></gmap-map>
     <button type="button" name="button" @click="random">random</button>
-    {{ resultList }}
   </div>
 </template>
 
@@ -46,7 +45,6 @@ export default {
   },
   methods: {
     random : function() {
-      console.log("rand");
       //Init place service
       var request = {
         location: this.position,
@@ -61,12 +59,12 @@ export default {
       //Get place list
       service.nearbySearch(request, function(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
-          console.log(results);
-          vm.resultList = results;
-          vm.randi = Math.floor(Math.random() * results.length);
-          console.log(vm.resultList[vm.randi])
 
-          vm.$store.commit('updateResult','success');
+          // store
+          vm.$store.commit('updateResult',results);
+
+          // route
+          vm.$router.push('/result/'+vm.position.lat+'/'+vm.position.lng+'/'+vm.zoom+'/');
         }
       });
     }

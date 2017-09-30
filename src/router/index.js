@@ -13,7 +13,7 @@ export default new Router({
       component: MainView
     },
     {
-      path: '/result/:lat/:lng/:zoom/:radius/:type',
+      path: '/result/:lat/:lng/:zoom/',
       name: 'RandomView',
       //props: true,
       component: RandomView
