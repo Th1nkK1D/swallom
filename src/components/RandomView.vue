@@ -6,7 +6,8 @@
       map-type-id="terrain"
       style="width: 100%; height: 200px"
     >
-    <gmap-marker :position="resultList[randi].geometry.location"></gmap-marker>
+      <gmap-marker :position="resultList[randi].geometry.location"></gmap-marker>
+      <gmap-marker :position="position" icon="/static/img/streetview-icon.png"></gmap-marker>    
     </gmap-map>
     <!-- <div v-if="resultList.length > 0">
       {{resultList[randi].name}}

@@ -6,7 +6,8 @@
       map-type-id="terrain"
       style="width: 100%; height: 500px"
     >
-    <gmap-marker :position="position"></gmap-marker></gmap-map>
+      <gmap-marker :position="position" icon="/static/img/streetview-icon.png"></gmap-marker>
+    </gmap-map>
     <button type="button" name="button" @click="random">random</button>
   </div>
 </template>
