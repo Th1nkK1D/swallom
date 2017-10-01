@@ -84,25 +84,35 @@ export default {
   }
   .text {
     padding: 5vw;
+    padding-top: 10vw;
     padding-bottom: 0;
+    position: relative;
+    font-size: 4vw;
   }
   .btn-container {
-    /*height: 40vh;*/
     justify-content: flex-end;
     padding: 5vw;
     padding-top: 10px;
   }
   .place-img {
+    position: absolute;
+    top: -10vh;
+    left: calc(50vw - 7.5vh);
     width: 15vh;
     height: 15vh;
     border-radius: 50%;
     object-fit: cover;
     margin: auto;
+    border: 4px solid white;
   }
   h3 {
     margin: 5px;
+    line-height: 100%;
+    font-size: 8vw;
   }
   h5 {
     margin-top: 10px;
+    line-height: 150%;
+    font-size: 4vw;
   }
 </style>
