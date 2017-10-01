@@ -8,9 +8,12 @@
         map-type-id="terrain"
         style="width: 100vw; height: 92vh"
       >
-        <gmap-marker :position="position" icon="/static/img/streetview-icon.png"></gmap-marker>
-        <gmap-circle :center="position" :radius="radius" options:="circleOptions"></gmap-circle>
+        <gmap-marker :position="position" icon="/static/img/streetview-icon.png" v-if="$refs && $refs.mainmap"></gmap-marker>
+        <gmap-circle :center="position" :radius="radius" options:="circleOptions" v-if="$refs && $refs.mainmap"></gmap-circle>
       </gmap-map>
+    </div>
+    <div v-if="!$refs || !$refs.mainmap" class="map-layer loading">
+      <v-progress-circular indeterminate v-bind:size="70" v-bind:width="7" class="pink--text lighten-2"></v-progress-circular>
     </div>
     <div class="control-layer">
       <div  class="top-con">
@@ -21,7 +24,7 @@
           <v-slider v-model="radius" :hint="'radius: '+radius+'m'" :persistent-hint="true" min="200" max="2000" ></v-slider>
         </v-flex>
         <v-flex>
-          <v-btn round primary dark block class="pink lighten-2" @click="random">Random</v-btn>
+          <v-btn round primary dark block class="pink lighten-2" @click="random" :disabled="type.length < 1">Random</v-btn>
         </v-flex>
       </v-layout>
     </div>
@@ -154,5 +157,13 @@ export default {
     bottom: 0;
     width: 100vw;
     padding: 5vw;
+  }
+
+  .loading {
+    width: 100vw;
+    background-color: white;
+    opacity: 0.6;
+    z-index: 999;
+    padding-top: 40vh;
   }
 </style>
