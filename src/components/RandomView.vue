@@ -69,7 +69,6 @@ export default {
       }
 
       this.randi = Math.floor(Math.random() * this.resultList.length);
-      console.log(this.resultList.length);
     },
     back: function() {
       this.$router.push('/');
