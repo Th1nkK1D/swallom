@@ -10,15 +10,21 @@
       <gmap-marker :position="resultList[randi].geometry.location"></gmap-marker>
       <gmap-marker :position="position" icon="/static/img/streetview-icon.png"></gmap-marker>
     </gmap-map>
-    <v-layout column class="text" v-if="resultList.length > 0">
+
+    <v-layout column class="text" v-if="resultList.length > 1">
       <img class="place-img" :src="resultList[randi].photos[0].getUrl({'maxWidth': 256, 'maxHeight': 256})" alt="">
       <h3>{{resultList[randi].name}}</h3>
       (Rating: {{resultList[randi].rating}}/5)
       <h5>{{resultList[randi].vicinity}}</h5>
     </v-layout>
 
+    <v-layout column class="text" v-else>
+      <h1>; - ;</h1>
+      <h3>Nothing left to eat</h3>
+    </v-layout>
+
     <v-layout column class="btn-container">
-      <v-btn round primary dark @click="random">Rerandom</v-btn>
+      <v-btn round primary dark @click="random">Re-random</v-btn>
       <v-btn round dark @click="back">Back</v-btn>
     </v-layout>
 
@@ -56,8 +62,14 @@ export default {
   },
   methods: {
     random: function() {
+      if(this.randi > 0) {
+        //remove old random
+        this.resultList.splice(this.randi,1);
+        this.$store.commit('updateResult',this.resultList);
+      }
+
       this.randi = Math.floor(Math.random() * this.resultList.length);
-      console.log(this.resultList[this.randi])
+      console.log(this.resultList.length);
     },
     back: function() {
       this.$router.push('/');
