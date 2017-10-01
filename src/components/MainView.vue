@@ -21,7 +21,7 @@
           <v-slider v-model="radius" :hint="'radius: '+radius+'m'" :persistent-hint="true" min="200" max="2000" ></v-slider>
         </v-flex>
         <v-flex>
-          <v-btn round primary dark block class="rand-btn" @click="random">Random</v-btn>
+          <v-btn round primary dark block class="pink lighten-2" @click="random">Random</v-btn>
         </v-flex>
       </v-layout>
     </div>

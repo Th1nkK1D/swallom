@@ -13,19 +13,19 @@
 
     <v-layout column class="text" v-if="resultList.length > 1">
       <img class="place-img" :src="resultList[randi].photos[0].getUrl({'maxWidth': 256, 'maxHeight': 256})" alt="">
-      <h3>{{resultList[randi].name}}</h3>
-      (Rating: {{resultList[randi].rating}}/5)
+      <h3 class="teal--text lighten-2">{{resultList[randi].name}}</h3>
+      <span class="teal--text lighten-2">(Rating: {{resultList[randi].rating}}/5)</span>
       <h5>{{resultList[randi].vicinity}}</h5>
     </v-layout>
 
     <v-layout column class="text" v-else>
-      <h1>; - ;</h1>
-      <h3>Nothing left to eat</h3>
+      <h1 class="teal--text lighten-2">; - ;</h1>
+      <h3 class="teal--text lighten-2">Nothing left to eat</h3>
     </v-layout>
 
     <v-layout column class="btn-container">
-      <v-btn round primary dark @click="random">Re-random</v-btn>
-      <v-btn round dark @click="back">Back</v-btn>
+      <v-btn round primary dark @click="random" class="pink lighten-2">Re-random</v-btn>
+      <v-btn round dark @click="back" class="blue-grey lighten-1">Back</v-btn>
     </v-layout>
 
   </v-layout>

@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <header>
+    <header class="teal lighten-2">
       <span>Swallom</span>
     </header>
     <main>
@@ -37,7 +37,6 @@ header {
   margin: 0;
   height: 8vh;
   padding: 0 16px 0 24px;
-  background-color: #3FB8AF;
   text-align: center;
 }
 
