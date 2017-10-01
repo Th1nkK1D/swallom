@@ -13,6 +13,12 @@
       </gmap-map>
     </div>
     <div class="control-layer">
+      <div  class="top-con">
+        <v-chip v-for="(type, i) in alltypes" :key="i" @click="toggleType(i)" :outline="!type.selected" class="secondary secondary--text" :class="{'white--text': type.selected}">{{type.name}}</v-chip>
+        <div class="">
+          {{type}}
+        </div>
+      </div>
       <v-layout column class="bottom-con">
         <v-flex>
           <v-slider v-model="radius" :hint="'radius: '+radius+'m'" :persistent-hint="true" min="200" max="2000" ></v-slider>
@@ -47,6 +53,14 @@ export default {
         fillColor: '#FF0000',
         fillOpacity: 0.2,
       },
+      alltypes: [
+        { name: 'Cafe', value: 'cafe', selected: false },
+        { name: 'Bakery', value: 'bakery', selected: false },
+        { name: 'Bar', value: 'bar', selected: false },
+        { name: 'Convenience Store', value: 'convenience_store', selected: false },
+        { name: 'Department Store', value: 'department_store', selected: false },
+        { name: 'Restaurant', value: 'restaurant', selected: true }
+      ]
     }
   },
   computed: {
@@ -75,6 +89,17 @@ export default {
     }
   },
   methods: {
+    toggleType : function(i) {
+      if(this.alltypes[i].selected) {
+        //toggle off
+        this.type.splice(this.type.indexOf(this.alltypes[i].value),1);
+        this.alltypes[i].selected = false;
+      } else {
+        //toggle on
+        this.type.push(this.alltypes[i].value);
+        this.alltypes[i].selected = true;
+      }
+    },
     random : function() {
       //Init place service
       var request = {
@@ -118,6 +143,13 @@ export default {
     position: relative;
     width: 100vw;
     height: 92vh;
+  }
+
+  .top-con {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    padding: 3vw 5vw;
   }
 
   .bottom-con {
