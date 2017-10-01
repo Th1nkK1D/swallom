@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-layout column class="max-view" v-if="randi != -1">
+  <v-layout column class="max-view" v-if="resultList && randi != -1">
     <gmap-map ref="resultmap"
       :center="resultList[randi].geometry.location"
       :zoom="zoom"
@@ -12,7 +12,7 @@
     </gmap-map>
 
     <v-layout column class="text" v-if="resultList.length > 1">
-      <img v-if="resultList[randi].photos && resultList[randi].photos[0]" class="place-img" :src="resultList[randi].photos[0].getUrl({'maxWidth': 256, 'maxHeight': 256})" alt="">
+      <img class="place-img" :src="resultList[randi].photos && resultList[randi].photos[0] ? resultList[randi].photos[0].getUrl({'maxWidth': 256, 'maxHeight': 256}) : '/static/img/default_place.png'" alt="">
       <h3 class="teal--text lighten-2">{{resultList[randi].name}}</h3>
       <star-rating class="start-rating" :rating="resultList[randi].rating" :read-only="true" :star-size="20" :show-rating="false"></star-rating>
       <h5>{{resultList[randi].vicinity}}</h5>
@@ -21,10 +21,11 @@
     <v-layout column class="text" v-else>
       <h1 class="teal--text lighten-2">; - ;</h1>
       <h3 class="teal--text lighten-2">Nothing left to eat</h3>
+      <h5>เรื่องมากชิบหาย</h5>
     </v-layout>
 
     <v-layout column class="btn-container">
-      <v-btn round primary dark @click="random" class="pink lighten-2">Re-random</v-btn>
+      <v-btn round primary dark @click="random" class="pink lighten-2" :disabled="resultList.length <= 1">Re-random</v-btn>
       <v-btn round dark @click="back" class="blue-grey lighten-1">Back</v-btn>
     </v-layout>
 
@@ -54,6 +55,10 @@ export default {
     },
   },
   mounted: function() {
+    if(this.resultList.length == 0) {
+        this.back();
+    }
+
     //Init data
     this.position = {lat: Number(this.$route.params.lat), lng: Number(this.$route.params.lng)};
     this.zoom = Number(this.$route.params.zoom);
