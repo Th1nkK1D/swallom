@@ -15,10 +15,10 @@
     <div class="control-layer">
       <v-layout column class="bottom-con">
         <v-flex>
-          <v-slider v-model="radius" min="200" max="2000"></v-slider>
+          <v-slider v-model="radius" :hint="'radius: '+radius+'m'" :persistent-hint="true" min="200" max="2000" ></v-slider>
         </v-flex>
         <v-flex>
-          <v-btn round primary dark class="rand-btn" @click="random">Random</v-btn>
+          <v-btn round primary dark block class="rand-btn" @click="random">Random</v-btn>
         </v-flex>
       </v-layout>
     </div>
@@ -33,7 +33,7 @@ export default {
       radius: 800,
       type: ['restaurant'],
       mapOptions: {
-        zoomControl: true,
+        zoomControl: false,
         mapTypeControl: false,
         scaleControl: true,
         streetViewControl: false,
@@ -54,7 +54,7 @@ export default {
       return this.$store.state.resultList;
     },
     zoom: function() {
-      return 15 - Math.round((this.radius-800)*0.001);
+      return 15 - Math.round((this.radius-800)*0.002);
     }
   },
   mounted: function() {
@@ -124,6 +124,6 @@ export default {
     position: absolute;
     bottom: 0;
     width: 100vw;
-    padding: 20px;
+    padding: 5vw;
   }
 </style>
