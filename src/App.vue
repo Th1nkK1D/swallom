@@ -29,12 +29,11 @@ body {
 
 main {
   text-align: center;
-  margin-top: 40px;
 }
 
 header {
   margin: 0;
-  height: 56px;
+  height: 8vh;
   padding: 0 16px 0 24px;
   background-color: #35495E;
   color: #ffffff;
@@ -49,5 +48,6 @@ header span {
   font-weight: 400;
   box-sizing: border-box;
   padding-top: 16px;
+  text-align: center;
 }
 </style>

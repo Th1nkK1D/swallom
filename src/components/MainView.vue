@@ -1,16 +1,20 @@
 <template lang="html">
-  <div>
-    <gmap-map ref="mainmap"
-      :center="position"
-      :zoom="zoom"
-      :options="mapOptions"
-      map-type-id="terrain"
-      style="width: 100%; height: 500px"
-    >
-      <gmap-marker :position="position" icon="/static/img/streetview-icon.png"></gmap-marker>
-      <gmap-circle :center="position" :radius="radius" options:="circleOptions"></gmap-circle>
-    </gmap-map>
-    <v-btn round primary dark @click="random">Random</v-btn>
+  <div class="layer-wrapper">
+    <div class="map-layer">
+      <gmap-map ref="mainmap"
+        :center="position"
+        :zoom="zoom"
+        :options="mapOptions"
+        map-type-id="terrain"
+        style="width: 100vw; height: 92vh"
+      >
+        <gmap-marker :position="position" icon="/static/img/streetview-icon.png"></gmap-marker>
+        <gmap-circle :center="position" :radius="radius" options:="circleOptions"></gmap-circle>
+      </gmap-map>
+    </div>
+    <div class="control-layer">
+      <v-btn round primary dark @click="random">Random</v-btn>
+    </div>
   </div>
 </template>
 
@@ -92,4 +96,18 @@ export default {
 </script>
 
 <style lang="css">
+  .layer-wrapper {
+    position: relative;
+  }
+
+  .map-layer {
+    position: absolute;
+    height: 92vh;
+  }
+
+  .control-layer {
+    position: absolute;
+    width: 100vw;
+    height: 92vh;
+  }
 </style>
