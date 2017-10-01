@@ -13,7 +13,14 @@
       </gmap-map>
     </div>
     <div class="control-layer">
-      <v-btn round primary dark @click="random">Random</v-btn>
+      <v-layout column class="bottom-con">
+        <v-flex>
+          <v-slider v-model="radius" min="200" max="2000"></v-slider>
+        </v-flex>
+        <v-flex>
+          <v-btn round primary dark class="rand-btn" @click="random">Random</v-btn>
+        </v-flex>
+      </v-layout>
     </div>
   </div>
 </template>
@@ -23,7 +30,6 @@ export default {
   data: function() {
     return {
       position: {lat: 0.0, lng: 0.0},
-      zoom: 15,
       radius: 800,
       type: ['restaurant'],
       mapOptions: {
@@ -46,6 +52,9 @@ export default {
   computed: {
     resultList: function() {
       return this.$store.state.resultList;
+    },
+    zoom: function() {
+      return 15 - Math.round((this.radius-800)*0.001);
     }
   },
   mounted: function() {
@@ -106,8 +115,15 @@ export default {
   }
 
   .control-layer {
-    position: absolute;
+    position: relative;
     width: 100vw;
     height: 92vh;
+  }
+
+  .bottom-con {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    padding: 20px;
   }
 </style>

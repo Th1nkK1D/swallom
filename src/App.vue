@@ -1,12 +1,12 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <header>
       <span>Vue.js PWA</span>
     </header>
     <main>
       <router-view></router-view>
     </main>
-  </div>
+  </v-app>
 </template>
 
 <script>
