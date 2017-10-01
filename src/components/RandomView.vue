@@ -111,7 +111,7 @@ export default {
     border: 4px solid white;
   }
   h3 {
-    margin: 5px;
+    margin: 5px !important;
     line-height: 100%;
     font-size: 8vw;
   }
