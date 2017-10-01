@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-layout column class="max-view">
+  <v-layout column class="max-view" v-if="randi != -1">
     <gmap-map ref="resultmap"
       :center="resultList[randi].geometry.location"
       :zoom="zoom"
@@ -12,7 +12,8 @@
     </gmap-map>
     <v-layout column class="text" v-if="resultList.length > 0">
       <img class="place-img" :src="resultList[randi].photos[0].getUrl({'maxWidth': 256, 'maxHeight': 256})" alt="">
-      <h2>{{resultList[randi].name}}</h2>
+      <h3>{{resultList[randi].name}}</h3>
+      (Rating: {{resultList[randi].rating}}/5)
       <h5>{{resultList[randi].vicinity}}</h5>
     </v-layout>
 
@@ -30,7 +31,7 @@ export default {
     return {
       position: {lat: 0.0, lng: 0.0},
       zoom: 15,
-      randi: 0,
+      randi: -1,
       mapOptions: {
         zoomControl: true,
         mapTypeControl: false,
@@ -78,6 +79,7 @@ export default {
     /*height: 40vh;*/
     justify-content: flex-end;
     padding: 5vw;
+    padding-top: 10px;
   }
   .place-img {
     width: 15vh;
@@ -85,5 +87,11 @@ export default {
     border-radius: 50%;
     object-fit: cover;
     margin: auto;
+  }
+  h3 {
+    margin: 5px;
+  }
+  h5 {
+    margin-top: 10px;
   }
 </style>
