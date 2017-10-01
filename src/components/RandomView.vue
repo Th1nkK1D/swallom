@@ -14,7 +14,7 @@
     <v-layout column class="text" v-if="resultList.length > 1">
       <img v-if="resultList[randi].photos && resultList[randi].photos[0]" class="place-img" :src="resultList[randi].photos[0].getUrl({'maxWidth': 256, 'maxHeight': 256})" alt="">
       <h3 class="teal--text lighten-2">{{resultList[randi].name}}</h3>
-      <span class="teal--text lighten-2" v-if="resultList[randi].rating">(Rating: {{resultList[randi].rating}}/5)</span>
+      <star-rating class="start-rating" :rating="resultList[randi].rating" :read-only="true" :star-size="20" :show-rating="false"></star-rating>
       <h5>{{resultList[randi].vicinity}}</h5>
     </v-layout>
 
@@ -114,5 +114,8 @@ export default {
     margin-top: 10px;
     line-height: 150%;
     font-size: 4vw;
+  }
+  .start-rating {
+    margin: 5px auto;
   }
 </style>

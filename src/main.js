@@ -8,12 +8,14 @@ import App from './App'
 import router from './router'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
+import StarRating from 'vue-star-rating'
 
 import('../node_modules/vuetify/dist/vuetify.min.css')
 
 
 Vue.use(Vuex)
 Vue.use(Vuetify)
+Vue.component('star-rating', StarRating);
 
 //Init Vuex store
 const store = new Vuex.Store({
