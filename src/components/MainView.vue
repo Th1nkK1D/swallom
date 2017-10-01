@@ -15,9 +15,6 @@
     <div class="control-layer">
       <div  class="top-con">
         <v-chip v-for="(type, i) in alltypes" :key="i" @click="toggleType(i)" :outline="!type.selected" class="secondary secondary--text" :class="{'white--text': type.selected}">{{type.name}}</v-chip>
-        <div class="">
-          {{type}}
-        </div>
       </div>
       <v-layout column class="bottom-con">
         <v-flex>
@@ -46,7 +43,7 @@ export default {
         rotateControl: false,
         fullscreenControl: false,
       },
-      cicleOptions: {
+      circleOptions: {
         strokeColor: '#FF0000',
         strokeOpacity: 0.6,
         strokeWeight: 1,
