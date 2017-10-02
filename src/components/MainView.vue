@@ -24,10 +24,17 @@
           <v-slider v-model="radius" :hint="'radius: '+radius+'m'" :persistent-hint="true" min="200" max="2000" ></v-slider>
         </v-flex>
         <v-flex>
-          <v-btn round primary dark block class="pink lighten-2" @click="random" :disabled="type.length < 1">Random</v-btn>
+          <v-btn round primary dark block class="pink lighten-2" @click="random" :disabled="type.length < 1">
+            <span v-show="!searching">Random</span>
+            <v-progress-circular indeterminate class="white--text" :size="20" v-show="searching"></v-progress-circular>
+          </v-btn>
         </v-flex>
       </v-layout>
     </div>
+    <v-snackbar error v-model="error.status">
+      {{ error.message }}
+      <v-btn dark flat @click.native="error.status = false">Close</v-btn>
+    </v-snackbar>
   </div>
 </template>
 
@@ -60,7 +67,12 @@ export default {
         { name: 'Convenience Store', value: 'convenience_store', selected: false },
         { name: 'Department Store', value: 'department_store', selected: false },
         { name: 'Restaurant', value: 'restaurant', selected: true }
-      ]
+      ],
+      error: {
+        status: false,
+        message: ''
+      },
+      searching: false
     }
   },
   computed: {
@@ -74,6 +86,8 @@ export default {
   mounted: function() {
     var vm = this;
 
+    this.searching = false;
+
     // Get device location
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -83,9 +97,14 @@ export default {
         };
       }, function() {
         console.log("Location Error")
+
+        this.error.message = 'Sad, Location Error';
+        this.error.status = true;
       });
     } else {
       console.log("Browser doesn't support Geolocation");
+      this.error.message = 'Sad, Your browser doesn\'t support Geolocation';
+      this.error.status = true;
     }
   },
   methods: {
@@ -101,6 +120,8 @@ export default {
       }
     },
     random : function() {
+      this.searching = true;
+
       //Init place service
       var request = {
         location: this.position,
@@ -114,13 +135,17 @@ export default {
 
       //Get place list
       service.nearbySearch(request, function(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
+        if (status == google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
 
           // store
           vm.$store.commit('updateResult',results);
 
           // route
           vm.$router.push('/result/'+vm.position.lat+'/'+vm.position.lng+'/'+vm.zoom+'/');
+        } else {
+          vm.searching = false;
+          vm.error.message = 'Sad, nothing found :(';
+          vm.error.status = true;
         }
       });
     }

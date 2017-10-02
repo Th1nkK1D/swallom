@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Kanit|Lobster');
+@import url('https://fonts.googleapis.com/css?family=Kanit|Lobster|Material+Icons');
 
 body {
   margin: 0;
