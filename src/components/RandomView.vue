@@ -89,7 +89,7 @@ export default {
   }
   .text {
     padding: 5vw;
-    padding-top: 10vw;
+    padding-top: 6vh;
     padding-bottom: 0;
     position: relative;
     font-size: 4vw;
